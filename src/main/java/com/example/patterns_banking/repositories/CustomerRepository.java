@@ -53,21 +53,21 @@ public class CustomerRepository {
 
         int affectedRows = pstmt.executeUpdate();
         if (affectedRows == 0) {
-          throw new SQLException("Creating account failed, no rows affected.");
+          throw new SQLException("Creating customer failed, no rows affected.");
         }
 
         try(ResultSet generatedKeys = pstmt.getGeneratedKeys()) {
           if (generatedKeys.next()) {
             customer.setId(generatedKeys.getLong(1));
           } else {
-            throw new SQLException("Creating account failed, no ID obtained.");
+            throw new SQLException("Creating customer failed, no ID obtained.");
           }
         }
       }
 
       return customer;
     } catch (SQLException e) {
-      throw new RuntimeException("Error saving account", e);
+      throw new RuntimeException("Error saving customer", e);
     }
   }
 }
